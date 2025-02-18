@@ -19,7 +19,10 @@ jobs:
         node-version: '18'
 
     - name: Install Dependencies
-      run: npm ci || npm install
+      run: |
+        rm -rf node_modules package-lock.json  # Remove any cached dependencies
+        npm install
+        npm list next  # Check if Next.js is installed
 
     - name: Build Next.js Application
       run: npm run build
