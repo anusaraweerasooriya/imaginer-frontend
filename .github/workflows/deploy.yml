@@ -33,12 +33,10 @@ jobs:
     - name: Deploy to AWS Elastic Beanstalk
       uses: einaregilsson/beanstalk-deploy@v20
       with:
+        aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        region: ${{ secrets.AWS_REGION }}
         application_name: ${{ secrets.EBS_APPLICATION_NAME }}
         environment_name: ${{ secrets.EBS_ENVIRONMENT_NAME }}
-        region: ${{ secrets.AWS_REGION }}
         version_label: ${{ github.run_id }}
-        zip_file: '.next'
-
-    env:
-      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        deployment_package: frontend.zip  # Correct parameter
