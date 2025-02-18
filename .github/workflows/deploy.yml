@@ -19,7 +19,7 @@ jobs:
         node-version: '18'
 
     - name: Install Dependencies
-      run: npm install
+      run: npm ci || npm install
 
     - name: Build Next.js Application
       run: npm run build
